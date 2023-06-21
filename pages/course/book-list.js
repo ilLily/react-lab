@@ -1,15 +1,27 @@
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState } from 'react';
+import Image from 'next/image';
 
 // 範例資料
-import data from '@/data/books.json'
+import data from '@/data/books.json';
 
 // 實心圖
-import bookmarkIconFill from '@/assets/bookmark-fill.svg'
+import bookmarkIconFill from '@/assets/bookmark-fill.svg';
 // 空心圖
-import bookmarkIcon from '@/assets/bookmark.svg'
+import bookmarkIcon from '@/assets/bookmark.svg';
 
 function BookList() {
+  data.map((d) => {
+    return { ...d, fav: false };
+  });
+  const [bookList, setBookList] = useState(data);
+  const toggle = (arr, key) => {
+    const newBookList = arr.map((d) => {
+      if (d.isbn === key) {
+        d.fav === false ? (d.isbn = true) : (d.isbn = false);
+      }
+      setBookList(newBookList);
+    });
+  };
   return (
     <>
       <h1>書籍清單</h1>
@@ -23,18 +35,25 @@ function BookList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>XXX</td>
-            <td>XXX</td>
-            <td>XXX</td>
-            <td>
-              <Image src={bookmarkIcon} alt="" />
-            </td>
-          </tr>
+          {bookList.map((d) => {
+            return (
+              <tr key={d.isbn}>
+                <td>{d.isbn}</td>
+                <td>${d.title}</td>
+                <td>${d.author}</td>
+                <td>
+                  <Image
+                    src={d.fav ? bookmarkIconFill : bookmarkIcon}
+                    onClick={() => toggle(bookList, d.isbn)}
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>
-  )
+  );
 }
 
-export default BookList
+export default BookList;

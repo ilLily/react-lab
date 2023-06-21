@@ -159,7 +159,6 @@ export default function ObjectArray() {
         onClick={() => {
           const newData = window.structuredClone(objArray);
           const dataIndex = newData.findIndex((d) => d.id === 3);
-          console.log(dataIndex);
           newData[dataIndex].text = 'ccc';
           setData(newData);
         }}
