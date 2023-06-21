@@ -3,20 +3,24 @@
       display: flex;
       justify-content: space-around;
     }
-    ul li a {
+    ul li{
       text-decoration: none;
       background-color: #000;
       color: #fff;
-      padding: 10px 20px;
       font-weight: bold;
     }
-
+    ul li a {
+      display:block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white
+    }
     ul li a:hover {
       background-color: yellow;
       color: #fff;
     }
-    li .active {
+    .active {
       background-color: red;
-      color: #fff;
+      color: white;
     }
         

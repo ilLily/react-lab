@@ -10,18 +10,19 @@ import bookmarkIconFill from '@/assets/bookmark-fill.svg';
 import bookmarkIcon from '@/assets/bookmark.svg';
 
 function BookList() {
-  data.map((d) => {
+  const sortedData = data.map((d) => {
     return { ...d, fav: false };
   });
-  const [bookList, setBookList] = useState(data);
-  const toggle = (arr, key) => {
-    const newBookList = arr.map((d) => {
-      if (d.isbn === key) {
-        d.fav === false ? (d.isbn = true) : (d.isbn = false);
-      }
-      setBookList(newBookList);
+
+  const [bookList, setBookList] = useState(sortedData);
+
+  function toggle(arr, key) {
+    return arr.map((d, i) => {
+      console.log(i, d.isbn === key);
+      if (d.isbn === key) return { ...d, fav: !d.fav };
+      else return { ...d };
     });
-  };
+  }
   return (
     <>
       <h1>書籍清單</h1>
@@ -39,12 +40,13 @@ function BookList() {
             return (
               <tr key={d.isbn}>
                 <td>{d.isbn}</td>
-                <td>${d.title}</td>
-                <td>${d.author}</td>
+                <td>{d.title}</td>
+                <td>{d.author}</td>
                 <td>
                   <Image
                     src={d.fav ? bookmarkIconFill : bookmarkIcon}
-                    onClick={() => toggle(bookList, d.isbn)}
+                    onClick={() => setBookList(toggle(bookList, d.isbn))}
+                    alt=""
                   />
                 </td>
               </tr>
