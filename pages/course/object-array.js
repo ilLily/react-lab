@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { v4 as uuid } from 'uuid';
 const objArray = [
   {
     id: 1,
@@ -90,10 +90,10 @@ export default function ObjectArray() {
       <br />
       <button
         onClick={() => {
-          const newObj = { id: 88, text: 'yyy' };
+          const newObj = { id: uuid(), text: 'xxx' };
 
           //1 //2
-          const newData = [...data, newObj];
+          const newData = [newObj, ...data];
 
           //3
           setData(newData);
@@ -102,21 +102,70 @@ export default function ObjectArray() {
         列表最前面，新增一個文字為xxx的物件(id不能與其它資料重覆)
       </button>
       <br />
-      <button onClick={() => {}}>
+      <button
+        onClick={() => {
+          const newObj = { id: uuid(), text: 'yyy' };
+          const newData = [...data, newObj];
+          setData(newData);
+        }}
+      >
         列表最後面，新增一個文字為yyy的物件(id不能與其它資料重覆)
       </button>
       <br />
-      <button onClick={() => {}}>
+      <button
+        onClick={() => {
+          const newData = objArray.filter((d) => d.text.includes('a'));
+          setData(newData);
+        }}
+      >
         尋找(過濾)只呈現所有文字中有包含a英文字母的資料
       </button>
+
       <br />
-      <button onClick={() => {}}>刪除文字為b的物件資料</button>
+      <button
+        onClick={() => {
+          const newData = objArray.filter((d) => !d.text.includes('b'));
+          setData(newData);
+        }}
+      >
+        刪除文字為b的物件資料
+      </button>
       <br />
-      <button onClick={() => {}}>刪除id為4的物件資料</button>
+      <button
+        onClick={() => {
+          const newData = objArray.filter((d) => d.id !== 4);
+          setData(newData);
+        }}
+      >
+        刪除id為4的物件資料
+      </button>
       <br />
-      <button onClick={() => {}}>在id為2後面插入id為5與文字為bbb的物件</button>
+      <button
+        onClick={() => {
+          const newObj = { id: 5, text: 'bbb' };
+          const wantIndex = 2;
+          const desiredIndex = objArray.findIndex(
+            (obj) => obj.id === wantIndex
+          );
+          objArray.splice(desiredIndex + 1, 0, newObj);
+          const newData = [...objArray];
+          setData(newData);
+        }}
+      >
+        在id為2後面插入id為5與文字為bbb的物件
+      </button>
       <br />
-      <button onClick={() => {}}>取代id為3的文字為cccc</button>
+      <button
+        onClick={() => {
+          const newData = window.structuredClone(objArray);
+          const dataIndex = newData.findIndex((d) => d.id === 3);
+          console.log(dataIndex);
+          newData[dataIndex].text = 'ccc';
+          setData(newData);
+        }}
+      >
+        取代id為3的文字為cccc
+      </button>
     </>
   );
 }
