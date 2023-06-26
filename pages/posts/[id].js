@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 // 頁面元件，對照`/posts/[id].js`，因為是單一篇張貼文的元件，所以命名為`Post`單數詞
 // `{ post }`是由`getStaticProps`最後回傳給此頁面元件的props(屬性)
@@ -7,8 +7,9 @@ import { useRouter } from 'next/router'
 // `getStaticProps`得到目前的網址參數後，找到對應的內容，然後傳給`Post`元件呈現
 // 這是SSG要產生靜態網頁的必要過程
 export default function Post({ post }) {
-  const { asPath } = useRouter()
-  const { title, content } = post
+  const { query, asPath } = useRouter();
+  console.log(query); //=>will get object{}
+  const { title, content } = post;
 
   return (
     <>
@@ -16,7 +17,7 @@ export default function Post({ post }) {
       <p>Path: {asPath}</p>
       <p>Content: {content}</p>
     </>
-  )
+  );
 }
 
 // params: 在動態路由頁面中，專門配合getStaticPaths使用的，
@@ -35,18 +36,18 @@ export async function getStaticProps({ params }) {
       title: '造火鍋能用',
       content: '不行了小後就，雙較其的圖真的很的衣服造火鍋能用。',
     },
-  ]
+  ];
 
   // ex.{id:'2'}
-  console.log(params)
+  console.log(params);
   // get post by id
-  const post = posts.find((v) => v.id === params.id)
+  const post = posts.find((v) => v.id === params.id);
 
   return {
     props: {
       post,
     },
-  }
+  };
 }
 
 // 回傳靜態路徑參數值，SSG預先渲染後產生對應的頁面使用。
@@ -65,18 +66,18 @@ export async function getStaticPaths() {
       title: '造火鍋能用',
       content: '不行了小後就，雙較其的圖真的很的衣服造火鍋能用。',
     },
-  ]
+  ];
 
   const paths = posts.map((post) => {
     return {
       params: {
         id: post.id,
       },
-    }
-  })
+    };
+  });
 
   // [ { params: { id: '1' } }, { params: { id: '2' } } ]
-  console.log(paths)
+  console.log(paths);
 
   return {
     paths,
@@ -90,5 +91,5 @@ export async function getStaticPaths() {
     // 適合頁面很多(數千頁)的SSG專案，如果進行預先產生大量靜態頁面，會造成長時間的打包時間
     //
     // fallback(備用)是`blocking`，不會出現404頁面，要搭配SSR使用。
-  }
+  };
 }
