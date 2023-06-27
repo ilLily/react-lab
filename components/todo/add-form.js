@@ -1,6 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 
-export default function AddForm() {
+export default function AddForm({ addItemHandler }) {
+  const [inputText, setInputText] = useState('');
+
+  //中文輸入法專用
+  const [isCompositing, setIsCompositing] = useState(false);
+
   return (
     <>
       <input

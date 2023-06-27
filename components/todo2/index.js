@@ -1,20 +1,15 @@
 import { useState } from 'react';
 import AddForm from './add-form';
-import Item from './item';
+import Item from './items';
 
 export default function TodoIndex() {
-  // 陣列: 每個成員 todo = {id:number, text:string, completed:boolean}
   const [todos, setTodos] = useState([
     { id: 1, text: '學react', completed: false },
     { id: 2, text: '買牛奶', completed: false },
   ]);
 
-  //  (單純處理狀態改變) pure
   const add = (todos, text) => {
-    // 用遞增id
     const ids = todos.map((v) => v.id);
-
-    // 狀態 todos沒資料時定義為1
     const newId = todos.length > 0 ? Math.max(...ids) + 1 : 1;
 
     const newTodo = {
@@ -26,7 +21,6 @@ export default function TodoIndex() {
     return [newTodo, ...todos];
   };
 
-  //  (單純處理狀態改變) pure 如果有比對到v.id是id，就作切換布林值的動作
   const toggleCompleted = (todos, id) => {
     return todos.map((v) => {
       if (v.id === id) return { ...v, completed: !v.completed };
@@ -34,7 +28,6 @@ export default function TodoIndex() {
     });
   };
 
-  // (單純處理狀態改變)pure 如果有比對到v.id是id，就作移除
   const remove = (todos, id) => {
     return todos.filter((v) => v.id !== id);
   };

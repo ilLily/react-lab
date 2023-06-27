@@ -1,16 +1,17 @@
 import React from 'react';
 
 export default function List({
-  data,
-  onChange = () => {},
-  onClick = () => {},
+  id = '',
+  text = '',
+  completed = false,
+  toggleHandler = () => {},
+  deleteHandler = () => {},
 }) {
-  console.log(data);
   return (
     <li>
-      <input type="checkbox" checked={data.completed} onChange={onChange} />
-      {data.completed ? <del>{data.text}</del> : data.text}
-      <button onClick={onClick}>X</button>
+      <input type="checkbox" checked={completed} onChange={toggleHandler} />
+      {completed ? <del>{text}</del> : text}
+      <button onClick={deleteHandler}>X</button>
     </li>
   );
 }

@@ -4,28 +4,31 @@ import List from './list';
 import AddForm from './add-form';
 
 export default function TodoIndex() {
-  const [inputText, setInputText] = useState('');
-
-  //中文輸入法專用
-  const [isCompositing, setIsCompositing] = useState(false);
-
-  //陣列，每個成員todo = {id:uuid ,text: string, completed: boolean}
   const [todos, setTodos] = useState([
     { id: 1, text: 'learn ant design', completed: false },
     { id: 2, text: 'update db', completed: false },
   ]);
+
+  const addHandler = (todos, text) => {
+    return [{ id: uuid(), inputText: text, completed: false }, ...todos];
+  };
 
   const crossHandler = (todos, id) => {
     return todos.map((v) => {
       return id === v.id ? { ...v, completed: !v.completed } : v;
     });
   };
+
   const delHandler = (todos, id) => {
     return todos.filter((v) => {
       return id !== v.id && v;
     });
   };
 
+  const addItemHandler = (todos) => {
+    setTodos(addHandler(todos, inputText));
+    setInputText('');
+  };
   return (
     <>
       <h2>TodoIndex</h2>
@@ -36,22 +39,14 @@ export default function TodoIndex() {
         onChange={(e) => {
           setInputText(e.target.value);
         }}
-        onCompositionEnd={() => setIsCompositing(false)}
-        onCompositionStart={() => setIsCompositing(true)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !isCompositing) {
-            const newtodo = [
-              { id: uuid(), text: inputText, completed: false },
-              ...todos,
-            ];
-            setTodos(newtodo);
-            setInputText('');
           }
         }}
       />
       <ul>
         {todos.map((t) => {
-          {id,text,completed} = t;
+          const { id, text, completed } = t;
           return (
             <List
               key={id}
