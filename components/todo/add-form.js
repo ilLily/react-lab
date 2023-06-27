@@ -17,12 +17,8 @@ export default function AddForm({ addItemHandler }) {
         onCompositionEnd={() => setIsCompositing(false)}
         onCompositionStart={() => setIsCompositing(true)}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' && !isCompositing) {
-            const newtodo = [
-              { id: uuid(), text: inputText, completed: false },
-              ...todos,
-            ];
-            setTodos(newtodo);
+          if (e.key === 'Enter' && !isCompositing && e.target.value) {
+            addItemHandler(inputText);
             setInputText('');
           }
         }}
