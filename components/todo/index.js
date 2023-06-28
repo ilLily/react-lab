@@ -5,12 +5,18 @@ import AddForm from './add-form';
 
 export default function TodoIndex() {
   const [todos, setTodos] = useState([
-    { id: 1, text: 'learn ant design', completed: false },
-    { id: 2, text: 'update db', completed: false },
+    { id: 1, text: 'learn ant design', completed: false, editing: false },
+    { id: 2, text: 'update db', completed: false, editing: false },
   ]);
 
+  const filterOptions = ['所有', '進行中', '已完成'];
+  const [todoFilter, setTodoFilter] = useState('所有');
+
   const addHandler = (todos, text) => {
-    return [{ id: uuid(), inputText: text, completed: false }, ...todos];
+    return [
+      { id: uuid(), text: text, completed: false, editing: false },
+      ...todos,
+    ];
   };
 
   const crossHandler = (todos, id) => {
@@ -25,44 +31,43 @@ export default function TodoIndex() {
     });
   };
 
-  const addItemHandler = (todos) => {
+  const addItemHandler = (inputText) => {
     setTodos(addHandler(todos, inputText));
-    setInputText('');
+  };
+
+  const toggleHandler = (id) => {
+    setTodos(crossHandler(todos, id));
+  };
+
+  const deleteHandler = (id) => {
+    setTodos(delHandler(todos, id));
+  };
+  const filterByType = (todos, type) => {
+    if (type === '進行中') return todos.filter((v) => !v.completed);
+    if (type === '已完成') return todos.filter((v) => v.completed);
+    return todos;
   };
   return (
     <>
       <h2>TodoIndex</h2>
-      <AddForm />
-      <input
-        type="text"
-        value={inputText}
-        onChange={(e) => {
-          setInputText(e.target.value);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && !isCompositing) {
-          }
-        }}
+      <AddForm addItemHandler={addItemHandler} />
+      <List
+        todos={filterByType(todos, todoFilter)}
+        toggleHandler={toggleHandler}
+        deleteHandler={deleteHandler}
       />
-      <ul>
-        {todos.map((t) => {
-          const { id, text, completed } = t;
-          return (
-            <List
-              key={id}
-              id={id}
-              text={text}
-              completed={completed}
-              onChange={() => {
-                setTodos(crossHandler(todos, t.id));
-              }}
-              onClick={() => {
-                setTodos(delHandler(todos, t.id));
-              }}
-            />
-          );
-        })}
-      </ul>
+      {filterOptions.map((v, i) => {
+        return (
+          <button
+            key={i}
+            onClick={() => {
+              setTodoFilter(v);
+            }}
+          >
+            {v}
+          </button>
+        );
+      })}
     </>
   );
 }
