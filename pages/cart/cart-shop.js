@@ -1,11 +1,24 @@
-import { Col, Row, ConfigProvider, Button } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import {
+  Col,
+  Row,
+  ConfigProvider,
+  Button,
+  Input,
+  Space,
+  Pagination,
+} from 'antd';
+
+import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
 
 export default function CartShop() {
   const data = [
     { name: 'my Product1', price: 250, qty: 4 },
     { name: 'my Product2', price: 500, qty: 2 },
   ];
+
+  const { Search } = Input;
+  const onSearch = (value) => console.log(value);
+
   return (
     <ConfigProvider
       theme={{
@@ -14,6 +27,24 @@ export default function CartShop() {
         },
       }}
     >
+      <Pagination defaultCurrent={1} total={50} />
+
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#1890ff',
+          },
+        }}
+      >
+        <Search
+          placeholder="input search text"
+          onSearch={onSearch}
+          style={{
+            width: 200,
+          }}
+        />
+      </ConfigProvider>
+
       <Button type="primary" shape="circle" icon={<SearchOutlined />} />
       <Button type="primary">Primary Button</Button>
       <Button>Default Button</Button>

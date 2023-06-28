@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* font-size: 16px; */
+}
+body{
+    max-width: 100vw;
+    background-color: #FFFAF6;
+}
+.container-outer{
+    border: 5px solid green;
+    max-width: 1920px;
+    overflow: hidden;
+    margin: auto;
+    
+}
+.container-inner{
+    max-width: 1280px;
+    /* border: 5px solid purple; */
+    margin: auto;
+    
+}
+.cardbox{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid gray;
+    justify-content: space-between;
+}
+.card{
+    border: 1px solid 
+}
+img{
+    width: 200px;
+    height:150px;
+}
+@media screen and (max-width:1920px) and (min-width:768px){
+.container-inner{
+    width: 68%;
+}
+}
+@media screen and (max-width:767px){
+.container-inner{
+    width: 85%;
+}
+}
