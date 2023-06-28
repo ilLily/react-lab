@@ -17,7 +17,8 @@ export default function Item({
           toggleHandler(id);
         }}
       />
-      {completed ? <del>{text}</del> : text}
+      {!editing && completed ? <del>{text}</del> : text}
+      <button>編輯</button>
       <button
         onClick={() => {
           deleteHandler(id);

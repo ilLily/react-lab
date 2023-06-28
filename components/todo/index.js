@@ -5,15 +5,18 @@ import AddForm from './add-form';
 
 export default function TodoIndex() {
   const [todos, setTodos] = useState([
-    { id: 1, text: 'learn ant design', completed: false },
-    { id: 2, text: 'update db', completed: false },
+    { id: 1, text: 'learn ant design', completed: false, editing: false },
+    { id: 2, text: 'update db', completed: false, editing: false },
   ]);
 
   const filterOptions = ['所有', '進行中', '已完成'];
   const [todoFilter, setTodoFilter] = useState('所有');
 
   const addHandler = (todos, text) => {
-    return [{ id: uuid(), text: text, completed: false }, ...todos];
+    return [
+      { id: uuid(), text: text, completed: false, editing: false },
+      ...todos,
+    ];
   };
 
   const crossHandler = (todos, id) => {
