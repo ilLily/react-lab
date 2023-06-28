@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Counter from '@/components/counter/counter';
+
 export default function OrderSuccess() {
   const [total, setTotal] = useState(1000);
   const totalHandler = (value) => {

@@ -1,4 +1,6 @@
 import data from '@/data/product/products';
+
+import Style from '@/styles/home.module.css';
 export default function Product() {
   //   console.log(data);
 
@@ -35,7 +37,7 @@ export default function Product() {
           }
         `}
       </style>
-      <h1>Product</h1>
+      <h1 className={Style.aaa}>Product</h1>
       <table>
         <thead>
           <tr>
