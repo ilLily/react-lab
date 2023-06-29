@@ -1,0 +1,13 @@
+.roundBtn{
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+    background-color: #FFD4C0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.rb-icon{
+    width: 17px;
+}

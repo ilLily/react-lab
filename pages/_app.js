@@ -1,6 +1,7 @@
 // import '@/styles/globals.css'
 // import '@/styles/menu.css';
 // import '@/styles/book-list.css';
+import '@/styles/home.css';
 import '@/styles/test-grid.css';
 import '@/styles/test-comp.css';
 import { AuthProvider } from '@/hooks/use-auth';

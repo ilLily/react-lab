@@ -1,0 +1,50 @@
+.d-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h.container-nav{
+    padding-top: 32px;
+    /* border: 1px solid red; */
+    max-width: 1350px;
+    margin: auto;
+    display: flex;
+}
+.h.btns{
+    display: flex;
+}
+.h.logo{
+    width: 17%;
+}
+.h.logo img{
+    width: 132px;
+}
+.h.btns{
+    flex-grow: 1;
+}
+.h.btn{
+    font-size: 18px;
+    flex-grow: 1;
+}
+.h.btn a{
+    width: 100%;
+    height: 2rem;
+}
+.roundBtnBox{
+    display: flex;
+    justify-content: flex-end;
+    width: 13%;
+    align-items: center;
+
+}
+.h.headerPhoto img{
+    width: 95%;
+}
+@media screen and (max-width:1920px) and (min-width:768px){
+.h.container-nav{
+    width: 70%;
+}
+@media screen and (max-width:767px){
+
+}
+}
