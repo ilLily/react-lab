@@ -21,20 +21,7 @@ body{
     margin: auto;
     
 }
-.cardbox{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    border: 1px solid gray;
-    justify-content: space-between;
-}
-.card{
-    border: 1px solid 
-}
-img{
-    width: 200px;
-    height:150px;
-}
+
 @media screen and (max-width:1920px) and (min-width:768px){
 .container-inner{
     width: 68%;

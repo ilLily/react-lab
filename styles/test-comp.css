@@ -1,0 +1,47 @@
+.cardbox{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid gray;
+    justify-content: space-between;
+}
+.card{
+    border: 1px solid 
+}
+.card img{
+    width: 200px;
+    height:150px;
+}
+
+.round-btn{
+    width: 130px;
+    height: 130px;
+    background-color: pink;
+    margin:16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.round-btn .in-round-btn{
+    border: 1px solid green;
+}
+.round-btn img{
+    width: 50px;
+    /* margin: auto; */
+}
+.round-btn p{
+    text-align: center;
+}
+
+@media screen and (max-width:1920px) and (min-width:768px){
+
+ 
+}
+@media screen and (max-width:767px){
+.round-btn{
+    width: 80px;
+    height: 80px;
+    /* background-color: transparent; */
+}
+
+}
