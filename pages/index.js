@@ -34,7 +34,14 @@ export default function Home() {
           <img src="/home/h-header-photo.png" alt="#" />
         </div>
       </header>
-      <main className="container-outer"></main>
+      <main className="container-outer">
+        <section className="h shop">
+          <div>
+            <h1>寵物商城</h1>
+            <h5>SHOP WITH ME</h5>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
